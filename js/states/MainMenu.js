@@ -18,21 +18,21 @@ Invaders.MainMenuState = {
         //Battle Scene
         this.makeBullets = true;
 
-        this.enemyShip = this.add.sprite(300, 0, 'enemyShip');
-        this.enemyShip.scale.setTo(4, 4);
+        this.enemyShip = this.add.sprite(350, 0, 'enemyShip');
+        this.enemyShip.scale.setTo(3, 3);
         this.enemyShip.animations.add('capture');
         this.enemyShip.animations.play('capture', 0.5, true);
-        this.add.tween(this.enemyShip).to({ y: 500 }, 1000, "Linear", true);
+        this.add.tween(this.enemyShip).to({ y: 600 }, 1000, "Linear", true);
         this.time.events.add(Phaser.Timer.SECOND * 6, function ()
         {
-            this.add.tween(this.enemyShip).to({ y: -800 }, 2000, "Linear", true);
+            this.add.tween(this.enemyShip).to({ y: -3000 }, 1000, "Linear", true);
         }, this);
 
-        this.man = this.add.sprite(0, 930, 'man');
-        this.man.scale.setTo(0.2, 0.2);
+        this.man = this.add.sprite(0, 870, 'man');
+        this.man.scale.setTo(0.5, 0.5);
         this.man.animations.add('walking');
         this.man.animations.play('walking', 10, true);
-        this.run = this.add.tween(this.man).to({ x: 450 }, 2500, "Linear", true);
+        this.run = this.add.tween(this.man).to({ x: 420 }, 2000, "Linear", true);
         this.run.onComplete.add(function ()
         {
             this.taken = this.add.tween(this.man).to({ y: 770 }, 2000, "Linear", true);
