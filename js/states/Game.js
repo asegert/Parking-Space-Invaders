@@ -93,7 +93,7 @@ Invaders.GameState = {
 
     initInvaders: function ()
     {
-        this.massKill = this.add.button(0, 0, 'enemy1b', function ()
+        /*this.massKill = this.add.button(0, 0, 'enemy1b', function ()
         {
             var enemy1Arr = [];
             var enemy2Arr = [];
@@ -149,7 +149,7 @@ Invaders.GameState = {
             }
             this.score = this.score - 1000;
         }, this);
-        this.massKill.alpha = 0;
+        this.massKill.alpha = 0;*/
 
 
         //Loop through each column in the grid
@@ -209,10 +209,6 @@ Invaders.GameState = {
 
     addTile: function (x, y, top)
     {
-        //if (y != 0)//0, 1, 8, 9
-        //{
-        //return null;
-        //}
         //Choose a random tile to add
         if (y === 0)
         {
@@ -296,11 +292,16 @@ Invaders.GameState = {
         }
         else if (tween === 1)//blink
         {
-            tile.tween = this.game.time.events.repeat(Phaser.Timer.SECOND * Math.round(Math.random() + 4), 10, function ()
+            var fadeIn = this.game.add.tween(tile).to({ alpha: 1 }, 2000, "Linear", true);
+            fadeIn.onComplete.add(function ()
             {
-                tile.y = Math.round(Math.random() + 7) * this.tileHeight + (this.tileHeight / 2);
-                tile.x = Math.round(Math.random() * 5) * this.tileWidth + (this.tileWidth / 2);
-            }, this, tile);
+                this.game.time.events.repeat(Phaser.Timer.SECOND * Math.round(Math.random() + 4), 10, function ()
+                {
+                    tile.y = Math.round(Math.random() + 7) * this.tileHeight + (this.tileHeight / 2);
+                    tile.x = Math.round(Math.random() * 5) * this.tileWidth + (this.tileWidth / 2);
+                }, this, tile);
+            }, this);
+            tile.tween = fadeIn;
         }
         else if (tween === 2)//runner
         {
@@ -822,7 +823,7 @@ Invaders.GameState = {
 
     update: function ()
     {
-        if (this.score > 1000 || this.tweenedPoints > 1000)
+        /*if (this.score > 1000 || this.tweenedPoints > 1000)
         {
             this.massKill.input.enabled = true;
             this.massKill.alpha = 1;
@@ -831,7 +832,7 @@ Invaders.GameState = {
         {
             this.massKill.input.enabled = false;
             this.massKill.alpha = 0;
-        }
+        }*/
         // called every udpdate to see if enemy hit by torpedo
         this.game.physics.arcade.overlap(this.bullets, this.invaders, this.directHit, null, this);
 
@@ -931,7 +932,7 @@ Invaders.GameState = {
     stateGameover: function ()
     {
         this.screenGameoverGroup.visible = true;
-        this.massKill.destroy();
+        //this.massKill.destroy();
         this.currentTimer.stop();
         this.gameoverScoreTween();
     },
@@ -939,7 +940,7 @@ Invaders.GameState = {
     {
         this.screenLevelOneGroup.visible = true;
         this.alienAnimation(1);
-        this.massKill.destroy();
+        //this.massKill.destroy();
         this.invaders.forEach(function (c) { c.kill(); });
         this.currentTimer.stop();
         this.screenLevelOneScore.setText('Score: ' + this.score);
@@ -949,7 +950,7 @@ Invaders.GameState = {
     {
         this.screenLevelTwoGroup.visible = true;
         this.alienAnimation(2);
-        this.massKill.destroy();
+        //this.massKill.destroy();
         this.invaders.forEach(function (c) { c.kill(); });
         this.currentTimer.stop();
         this.screenLevelTwoScore.setText('Score: ' + this.score);
@@ -959,7 +960,7 @@ Invaders.GameState = {
     {
         this.screenLevelThreeGroup.visible = true;
         this.alienAnimation(3);
-        this.massKill.destroy();
+        //this.massKill.destroy();
         this.invaders.forEach(function (c) { c.kill(); });
         this.currentTimer.stop();
         this.screenLevelThreeScore.setText('Score: ' + this.score);
