@@ -282,15 +282,15 @@ Invaders.GameState = {
                 tile.tween.stop();
             }
         }
-        if (tween === 0)//lights
+        /*if (tween === 0)//lights
         {
             var num = 2000 + Math.floor(Math.random() * 1000);
             var upDown = this.game.add.tween(tile).to({ y: 6 * this.tileHeight + (this.tileHeight / 2) }, num, "Linear", true, 0, -1); //Start at 2
             upDown.yoyo(true, num);
 
             tile.tween = upDown;
-        }
-        else if (tween === 1)//blink
+        }*/
+        if (tween === 1 || tween === 2)//blink + runner
         {
             var fadeIn = this.game.add.tween(tile).to({ alpha: 1 }, 2000, "Linear", true);
             fadeIn.onComplete.add(function ()
@@ -303,7 +303,7 @@ Invaders.GameState = {
             }, this);
             tile.tween = fadeIn;
         }
-        else if (tween === 2)//runner
+        /*else if (tween === 2)//runner
         {
             var x = tile.x / this.tileWidth - 0.5;
             if (x > 2)
@@ -335,8 +335,8 @@ Invaders.GameState = {
                 }, this);
             }
             tile.tween = sideToSide;
-        }
-        else//open      
+        }*/
+        else//open + lights     
         {
             var x = tile.x / this.tileWidth - 0.5;
             if (x > 2)

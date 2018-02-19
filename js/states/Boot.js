@@ -1,14 +1,16 @@
 var Invaders = Invaders || {};
 
 Invaders.BootState = {
-    create: function(){
-		this.stage.backgroundColor = '#000000';
-		this.load.image('loading-background', 'img/loading-background.png');
-		this.load.image('loading-progress', 'img/loading-progress.png');
-
-        this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+	preload: function(){
+		this.stage.backgroundColor = '#ffffff';
+		this.load.image('loading-background', 'assets/images/loading-background.png');
+		this.load.image('loading-progress', 'assets/images/loading-progress.png');
+	},
+	create: function(){
+		this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 		this.scale.pageAlignHorizontally = true;
 		this.scale.pageAlignVertically = true;
+        this.scale.forceOrientation(true, false); //Forces scaling to be horizontal - landscape
 		this.state.start('Preload');
 	}
 };

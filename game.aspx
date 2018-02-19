@@ -103,6 +103,7 @@
 	    <script src="js/states/Preload.js"></script>
 	    <script src="js/states/MainMenu.js"></script>
 	    <script src="js/states/Story.js"></script>
+        <script src="js/states/Cache.js"></script>
 	    <script src="js/states/Game.js"></script>
 
         <style>
