@@ -3,6 +3,9 @@ var Invaders = Invaders || {};
 Invaders.MainMenuState = {
     create: function ()
     {
+        Invaders.music = this.add.audio('backgroundStory');
+        Invaders.music.play('', 0, 1, true);
+
         this.add.sprite(0, 0, 'start-bg');
         var title = this.add.sprite(this.world.width * 0.5, (this.world.height - 300) * 0.5, 'logo');
         title.anchor.set(0.5);
@@ -43,7 +46,7 @@ Invaders.MainMenuState = {
 
                 this.time.events.loop(Phaser.Timer.SECOND / 8, function ()
                 {
-                    if(this.makeBullets)
+                    if (this.makeBullets)
                     {
                         var bullet = this.add.sprite(this.heroShip.x + 70, this.heroShip.y + 150, 'photon');
                         bullet.rotation = -this.heroShip.rotation;

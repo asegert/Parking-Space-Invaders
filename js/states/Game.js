@@ -17,8 +17,11 @@ Invaders.GameState = {
 
         //prep some sounds
         this.laserSfx = this.add.audio('laser');
+        this.laserSfx.volume = 0.1;
         this.explodeSfx = this.add.audio('explode');
+        this.explodeSfx.volume = 0.1;
         this.counterSfx = this.add.audio('counter');
+        this.counterSfx.volume = 0.1;
 
 
 
@@ -93,61 +96,66 @@ Invaders.GameState = {
 
     initInvaders: function ()
     {
+        Invaders.music.stop();
+        Invaders.music.volume = 1;
+        Invaders.music = this.add.audio('background');
+        Invaders.music.play('', 0, 1, true);
+
         /*this.massKill = this.add.button(0, 0, 'enemy1b', function ()
         {
-            var enemy1Arr = [];
-            var enemy2Arr = [];
-            var enemy3Arr = [];
-            var enemy4Arr = [];
-            this.invaders.forEach(function (enemy)
-            {
-                if (enemy.key == 'enemy1')
-                {
-                    enemy1Arr[enemy1Arr.length] = enemy;
-                }
-                else if (enemy.key == 'enemy2')
-                {
-                    enemy2Arr[enemy2Arr.length] = enemy;
-                }
-                else if (enemy.key == 'enemy3')
-                {
-                    enemy3Arr[enemy3Arr.length] = enemy;
-                }
-                else if (enemy.key == 'enemy4')
-                {
-                    enemy4Arr[enemy4Arr.length] = enemy;
-                }
-            }, this);
+        var enemy1Arr = [];
+        var enemy2Arr = [];
+        var enemy3Arr = [];
+        var enemy4Arr = [];
+        this.invaders.forEach(function (enemy)
+        {
+        if (enemy.key == 'enemy1')
+        {
+        enemy1Arr[enemy1Arr.length] = enemy;
+        }
+        else if (enemy.key == 'enemy2')
+        {
+        enemy2Arr[enemy2Arr.length] = enemy;
+        }
+        else if (enemy.key == 'enemy3')
+        {
+        enemy3Arr[enemy3Arr.length] = enemy;
+        }
+        else if (enemy.key == 'enemy4')
+        {
+        enemy4Arr[enemy4Arr.length] = enemy;
+        }
+        }, this);
 
-            if (enemy2Arr.length > 0)
-            {
-                enemy2Arr.forEach(function (enemy)
-                {
-                    this.directHit(null, enemy);
-                }, this);
-            }
-            else if (enemy3Arr.length > 0)
-            {
-                enemy3Arr.forEach(function (enemy)
-                {
-                    this.directHit(null, enemy);
-                }, this);
-            }
-            else if (enemy4Arr.length > 0)
-            {
-                enemy4Arr.forEach(function (enemy)
-                {
-                    this.directHit(null, enemy);
-                }, this);
-            }
-            else if (enemy1Arr.length > 0)
-            {
-                enemy1Arr.forEach(function (enemy)
-                {
-                    this.directHit(null, enemy);
-                }, this);
-            }
-            this.score = this.score - 1000;
+        if (enemy2Arr.length > 0)
+        {
+        enemy2Arr.forEach(function (enemy)
+        {
+        this.directHit(null, enemy);
+        }, this);
+        }
+        else if (enemy3Arr.length > 0)
+        {
+        enemy3Arr.forEach(function (enemy)
+        {
+        this.directHit(null, enemy);
+        }, this);
+        }
+        else if (enemy4Arr.length > 0)
+        {
+        enemy4Arr.forEach(function (enemy)
+        {
+        this.directHit(null, enemy);
+        }, this);
+        }
+        else if (enemy1Arr.length > 0)
+        {
+        enemy1Arr.forEach(function (enemy)
+        {
+        this.directHit(null, enemy);
+        }, this);
+        }
+        this.score = this.score - 1000;
         }, this);
         this.massKill.alpha = 0;*/
 
@@ -284,11 +292,11 @@ Invaders.GameState = {
         }
         /*if (tween === 0)//lights
         {
-            var num = 2000 + Math.floor(Math.random() * 1000);
-            var upDown = this.game.add.tween(tile).to({ y: 6 * this.tileHeight + (this.tileHeight / 2) }, num, "Linear", true, 0, -1); //Start at 2
-            upDown.yoyo(true, num);
+        var num = 2000 + Math.floor(Math.random() * 1000);
+        var upDown = this.game.add.tween(tile).to({ y: 6 * this.tileHeight + (this.tileHeight / 2) }, num, "Linear", true, 0, -1); //Start at 2
+        upDown.yoyo(true, num);
 
-            tile.tween = upDown;
+        tile.tween = upDown;
         }*/
         if (tween === 1 || tween === 2)//blink + runner
         {
@@ -305,36 +313,36 @@ Invaders.GameState = {
         }
         /*else if (tween === 2)//runner
         {
-            var x = tile.x / this.tileWidth - 0.5;
-            if (x > 2)
-            {
-                tile.origX = x * this.tileWidth + this.tileWidth / 2;
-                var sideToSide = this.game.add.tween(tile).to({ x: 980 }, (670 * (x + 1)), "Linear", true);
-                sideToSide.onComplete.add(function (tile)
-                {
-                    tile.x = -20;
-                    var returnSideToSide = this.game.add.tween(tile).to({ x: tile.origX }, (670 * 3), "Linear", true);
-                    returnSideToSide.onComplete.add(function ()
-                    {
-                        sideToSide.start();
-                    }, this);
-                }, this);
-            }
-            else
-            {
-                tile.origX = x * this.tileWidth + this.tileWidth / 2;
-                var sideToSide = this.game.add.tween(tile).to({ x: -20 }, (670 * (x - 2)), "Linear", true);
-                sideToSide.onComplete.add(function (tile)
-                {
-                    tile.x = 980;
-                    var returnSideToSide = this.game.add.tween(tile).to({ x: tile.origX }, (670 * 3), "Linear", true);
-                    returnSideToSide.onComplete.add(function ()
-                    {
-                        sideToSide.start();
-                    }, this);
-                }, this);
-            }
-            tile.tween = sideToSide;
+        var x = tile.x / this.tileWidth - 0.5;
+        if (x > 2)
+        {
+        tile.origX = x * this.tileWidth + this.tileWidth / 2;
+        var sideToSide = this.game.add.tween(tile).to({ x: 980 }, (670 * (x + 1)), "Linear", true);
+        sideToSide.onComplete.add(function (tile)
+        {
+        tile.x = -20;
+        var returnSideToSide = this.game.add.tween(tile).to({ x: tile.origX }, (670 * 3), "Linear", true);
+        returnSideToSide.onComplete.add(function ()
+        {
+        sideToSide.start();
+        }, this);
+        }, this);
+        }
+        else
+        {
+        tile.origX = x * this.tileWidth + this.tileWidth / 2;
+        var sideToSide = this.game.add.tween(tile).to({ x: -20 }, (670 * (x - 2)), "Linear", true);
+        sideToSide.onComplete.add(function (tile)
+        {
+        tile.x = 980;
+        var returnSideToSide = this.game.add.tween(tile).to({ x: tile.origX }, (670 * 3), "Linear", true);
+        returnSideToSide.onComplete.add(function ()
+        {
+        sideToSide.start();
+        }, this);
+        }, this);
+        }
+        tile.tween = sideToSide;
         }*/
         else//open + lights     
         {
@@ -757,14 +765,26 @@ Invaders.GameState = {
 
     levelOneDone: function ()
     {
+        Invaders.music.volume = 0.5;
+        var prizeSound = this.add.audio('prize');
+        prizeSound.play();
+
         this.stateStatus = 'levelOneOver';
     },
     levelTwoDone: function ()
     {
+        Invaders.music.volume = 0.5;
+        var prizeSound = this.add.audio('prize');
+        prizeSound.play();
+
         this.stateStatus = 'levelTwoOver';
     },
     levelThreeDone: function ()
     {
+        Invaders.music.volume = 0.5;
+        var prizeSound = this.add.audio('prize');
+        prizeSound.play();
+
         this.stateStatus = 'levelThreeOver';
     },
     startLevelTwo: function ()
@@ -825,13 +845,13 @@ Invaders.GameState = {
     {
         /*if (this.score > 1000 || this.tweenedPoints > 1000)
         {
-            this.massKill.input.enabled = true;
-            this.massKill.alpha = 1;
+        this.massKill.input.enabled = true;
+        this.massKill.alpha = 1;
         }
         else
         {
-            this.massKill.input.enabled = false;
-            this.massKill.alpha = 0;
+        this.massKill.input.enabled = false;
+        this.massKill.alpha = 0;
         }*/
         // called every udpdate to see if enemy hit by torpedo
         this.game.physics.arcade.overlap(this.bullets, this.invaders, this.directHit, null, this);

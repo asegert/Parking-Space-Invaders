@@ -59,7 +59,10 @@ Invaders.PreloadState = {
 		['audio-theme', ['assets/audio/game-music.mp3','assets/audio/game-music.ogg']],
         ['counter', ['assets/audio/counter.mp3','assets/audio/counter.ogg']],
         ['laser', ['assets/audio/laser.mp3','assets/audio/laser.ogg']],
-        ['explode', ['assets/audio/invaderExplode.mp3','assets/audio/invaderExplode.ogg']]
+        ['explode', ['assets/audio/invaderExplode.mp3','assets/audio/invaderExplode.ogg']],
+        ['backgroundStory', ['assets/audio/menu-music.mp3', 'assets/audio/menu-music.mp4', 'assets/audio/menu-music.ogg']],
+        ['background', ['assets/audio/game-play-music.mp3', 'assets/audio/game-play-music.mp4', 'assets/audio/game-play-music.ogg']],
+        ['prize', ['assets/audio/instant-prize-music.mp3', 'assets/audio/instant-prize-music.mp4', 'assets/audio/instant-prize-music.ogg']]
 	]
 };
 		for(var method in pack) {
