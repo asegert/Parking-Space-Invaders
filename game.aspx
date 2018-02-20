@@ -132,7 +132,14 @@
                 -o-box-shadow: none;
                 box-shadow: none;
             }
-            
+            html, body {
+
+			    background: url(assets/images/bg-game.jpg) no-repeat center fixed;
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+			}
             #ieError{
                 font-family: Arial;
                 font-size: 3rem;
@@ -154,22 +161,7 @@
     <h1 class="teko-bold load-font">test</h1>
 
 	<form runat='server' id="form1" name='form1' method='POST' action="">
-	<!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content" style="background-color:transparent;">
-	      <div class="modal-body" >
-		    <h1 class="modal-title teko-bold text-center" style="color:#73CFFF;">CONGRATULATIONS!</h1>
-	        <h2 id="firstConfirm" class="teko text-center"  style="color:#73CFFF;">You destroyed <span id="modalShips"></span> enemy ships and collected <span id="modalScore"></span> points!</h2>
-	      	<h1 id="secondConfirm" class="teko text-center"  style="color:#73CFFF;">You won an Instant Win Prize worth up to</h1>
-					<h1 id="secondConfirm" class="teko text-center"  style="color:#73CFFF; font-size:50px;">$1,000</h1>
-	      </div>
-	      <div class="modal-footer" style="background-color:transparent;border:none;">
-	        <button type="submit" class="btn btn-primary btn-lg btn-block teko-bold" style="background-color:#73CFFF;color:#000;">REGISTER YOUR SCORE</input>
-	      </div>
-	    </div>
-	  </div>
-	</div>
+
 
 	<!--<input type="hidden" id="player_score" value="" runat="server">-->
 
